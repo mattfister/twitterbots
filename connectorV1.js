@@ -11,8 +11,6 @@
 // And Jason Bury for this Markov chain code http://www.soliantconsulting.com/blog/2013/02/draft-title-generator-using-markov-chains
 // ttezel too, for twitjs https://github.com/ttezel/twit
 
-// Every 15 minutes it picks a trend, announces what it's thinking about
-
 var Twit = require('twit');
 var fs = require('fs');
 
