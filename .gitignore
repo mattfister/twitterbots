@@ -1,6 +1,9 @@
 # Logs
 logs
 *.log
+*~
+twitterkeys.txt
+keys.txt
 
 # Runtime data
 pids
