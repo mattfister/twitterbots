@@ -1,0 +1,9 @@
+place: beach
+placeadjectives: hot, sunny, sandy, quiet, stormy
+verbs: surfed, swam, sun-tanned
+things: turtle, crab, wave, shark
+place: haunted house
+placeadjectives: creepy, spooky, creaky
+verbs: searched, explored, creeped
+things: ghost, bat, vampire, werewolf, library
+

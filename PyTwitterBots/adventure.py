@@ -26,6 +26,13 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
+corpus = {}
+file adventureFile = open('adventureData/adventureData.txt')
+for line in adventureFile:
+    
+adventureFile.close()
+
+
 def postTweet(tweet):
     api.update_status(status=tweet)
 
@@ -48,7 +55,7 @@ class StdOutListener(StreamListener):
                     if(medium["type"] == 'photo'):
                         print 'media_url='+str(medium["media_url"])
                         response=requests.get(medium["media_url"], stream=True)
-                        with open('img' + str(i) + '.jpg', 'wb') as outFile:
+                        with open('img' + str(self.imgNum) + '.jpg', 'wb') as outFile:
                             shutil.copyfileobj(response.raw, outFile)
                         del response
                        
@@ -56,7 +63,7 @@ class StdOutListener(StreamListener):
                         self.done = True;
                         return False
             except Exception as e:
-                print '.',
+                print e,
             #if 'media' in entities:
             #    media = entities['media']
             #    print 'media='+str(media)
@@ -70,30 +77,24 @@ class StdOutListener(StreamListener):
     
 if __name__ == '__main__':
     
-    subjects = ['Sketch', 'Painting', 'Watercolor', 'Modern', 'Impressionism', 'Abstract', 'Surreal', 'Art', 'Sculpture', 'Drawing']
+    story = [['Today I went to the beach!', 'beach'],
+             ['The water was warm and inviting.', 'ocean'],
+             ['I got a bad sunburn though!', 'sun'],
+             ['Then I saw a turtle... It was huge', 'turtle'],
+             ['I went back home happy', 'beach']]
     
-    while(1):
-        random.shuffle(subjects);
-        for i in range(0, 2):
-            subject = subjects[i]
-            l = StdOutListener(i)
-            stream = Stream(auth, l)
-            print 'Streaming ' + subject
-            stream.filter(track=[subject])
-            time.sleep(10)
+
+    for segment in story:
+        status = segment[0]
+        subject = segment[1]
+        listener = StdOutListener(0)
+        stream = Stream(auth, listener)
+        print 'Streaming ' + subject
+        stream.filter(track=[subject])
+        time.sleep(10)
         try:
-            img1 = Image.open('img0.jpg')
-            img2 = Image.open('img1.jpg')
-            img1 = img1.resize((1024, 512))
-            img2 = img2.resize((1024, 512))
-            if (random.random() < 0.1):
-                img2 = img2.rotate(180)
-            #out = ImageChops.blend(img1, img2, 0.5)
-            out = ImageChops.blend(img1, img2, 0.5)
-            out.save('out.jpg')
-            
-            api.update_with_media('out.jpg', "Voila, my new painting is complete! I call it " + subjects[0] + "-" + subjects[1] +"!" + " #" + subjects[0] + " #" + subjects[1]);
-            time.sleep(60*5);
+            api.update_with_media('img0.jpg', status)
+            time.sleep(60*10)
         except Exception as e:
             print e
 
