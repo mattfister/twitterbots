@@ -34,7 +34,6 @@ class StdOutListener(StreamListener):
     def __init__(self, i):
         self.done = False;
         self.imgNum = i;
-        print 'started stream ' + str(i);
     """ A listener handles tweets are the received from the stream.
     This is a basic listener that just prints received tweets to stdout.
     """
@@ -70,8 +69,7 @@ class StdOutListener(StreamListener):
 
     
 if __name__ == '__main__':
-    subjects = ['Trump', 'Funny', 'Puppy', 'Obama', 'Kitty', 
-                'Robot', 'Nature', 'Netflix', 'Vacation', 'Sky', 'Pizza', 'Clinton', 'Politics']
+    subjects = ['Oil', 'Watercolor', 'Modernism', 'Impressionism', 'Abstract', 'Realism', 'Surreal', 'Art']
     
     while(1):
         random.shuffle(subjects);
@@ -79,6 +77,7 @@ if __name__ == '__main__':
             subject = subjects[i]
             l = StdOutListener(i)
             stream = Stream(auth, l)
+            print 'Streaming ' + subject
             stream.filter(track=[subject])
             time.sleep(10)
         try:
@@ -92,7 +91,7 @@ if __name__ == '__main__':
             out = ImageChops.blend(img1, img2, 0.5)
             out.save('out.jpg')
             
-            api.update_with_media('out.jpg', "Voila! I call it " + subjects[0] + "-" + subjects[1] +"!" + " #" + subjects[0] + " #" + subjects[1]);
+            api.update_with_media('out.jpg', "Voila my new painting is complete! I call it " + subjects[0] + "-" + subjects[1] +"!" + " #" + subjects[0] + " #" + subjects[1]);
             time.sleep(60*5);
         except Exception as e:
             print e
