@@ -4,6 +4,10 @@ import sys
 def rhyme(inp):
      entries = nltk.corpus.cmudict.entries()
      syllables = [(word, syl) for word, syl in entries if word == inp]
+     if len(syllables) == 0:
+          return []
+     if len(syllables[0]) < 2:
+          return []
      numSyllables = len(syllables[0][1])-1
      rhymes = []
      for (word, syllable) in syllables:
@@ -15,6 +19,6 @@ def rhyme(inp):
                filteredRhymes += [rhyme]
      return set(filteredRhymes)
 
-
-print rhyme(sys.argv[1])
+if __name__ == "__main__":
+     print rhyme(sys.argv[1])
 

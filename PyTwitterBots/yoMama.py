@@ -33,7 +33,7 @@ for line in verbLines:
     verbs += (v[:1])
 
 adjs = []
-adjsRaw = open("a.txt").read()
+adjsRaw = open("insultAdjectives.txt").read()
 adjLines = adjsRaw.split("\n")
 for line in adjLines:
     a = line.split()
@@ -46,15 +46,15 @@ def aOrAn(word):
         return 'a'
 
 def findTwoRelatedNouns():
+    threshold = 0.8
     while 1:
-        threshold = 0.5
         noun1 = random.choice(nouns)
         noun2 = random.choice(nouns)
         word1 = wn.synset( noun1 + ".n.01")
         word2 = wn.synset( noun2 + ".n.01")
-        threshold -= 0.001
-        if noun1 != noun2 and word1.path_similarity(word2) > threshold:
-            print noun1 + " " + noun2 + " " + str(threshold)
+        sim = word1.wup_similarity(word2)
+        if noun1 != noun2 and sim > threshold:
+            print noun1 + " " + noun2 + " " + str(sim)
             return [noun1, noun2]
         
 def findVerbRelatedToNoun(noun):
@@ -111,8 +111,8 @@ if __name__ == '__main__':
        part2 = 'she makes ' + aOrAn(noun1) + ' ' + noun1 + ' look like ' + aOrAn(noun2) + ' ' + noun2 + '!'
        
        print part1 + part2
-       api.update_status(status=part1+part2)
-       time.sleep(60*2)
+       #api.update_status(status=part1+part2)
+       #time.sleep(60*2)
        
 
 
