@@ -43,6 +43,18 @@ def getLivingThing():
 def getCeleb():
     return random.choice(celebs)
 
+def getClubCeleb():
+    celeb = getCeleb()
+    choice = random.random()
+    if choice < 0.7:
+        pass
+    elif choice < 0.9:
+        celeb = "a " + celeb + " impersonator"
+    elif choice < 1.0:
+        relation = random.choice(["father", "mother", "sister", "brother", "twin", "uncle", "aunt", "grandfather", "grandmother"])
+        celeb = celeb + "'s " + relation
+    return celeb
+
 def maybe(value):
     if random.random() > 0.5:
         return value + " "
@@ -51,7 +63,7 @@ def maybe(value):
 
 def acronymize(s):
     a = ""
-    sep = random.choice(["/", "|", ".", " ", "-", "*"])
+    sep = random.choice([".", " "])
     for c in s:
         if not c==" ":
             a = a + c + sep
@@ -82,13 +94,16 @@ def clubThing():
     choice = random.random()
     if choice < 0.3:
         thing = maybe(getAdj()) + getAdj() + " " + pattern.en.pluralize(getNoun())
-    elif choice < 0.8:
+    elif choice < 0.6:
         thing = pattern.en.pluralize(getNoun())
+    elif choice < 0.7:
+        collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit full"]) 
+        thing = collective + " of " + maybe(getAdj()) + pattern.en.pluralize(getLivingThing())
     elif choice < 0.95:
         prep = random.choice(["with", "by"])
         thing = pattern.en.referenced(maybe(getAdj()) + getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(getAdj()) + getNoun())
     else:
-        thing = getCeleb()
+        thing = getClubCeleb()
     return thing
 
 def theyveGotEverything():
