@@ -5,6 +5,8 @@ logs
 twitterkeys.txt
 keys.txt
 
+*.pyc
+
 # Runtime data
 pids
 *.pid
