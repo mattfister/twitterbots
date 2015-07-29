@@ -4,14 +4,12 @@ import sys
 def rhyme(inp):
      entries = nltk.corpus.cmudict.entries()
      syllables = [(word, syl) for word, syl in entries if word == inp]
-     if len(syllables) == 0:
-          return []
-     if len(syllables[0]) < 2:
-          return []
-     numSyllables = len(syllables[0][1])-1
+     minlength = len(syllables)
      rhymes = []
      for (word, syllable) in syllables:
-             rhymes += [word for word, pron in entries if pron[-numSyllables:] == syllable[-numSyllables:]]
+          for word2, pron in entries:
+               if pron[-2:] == syllable[-2:]:
+                    rhymes += [word2]
      filteredRhymes = []
      for rhyme in rhymes:
           if len(nltk.corpus.wordnet.synsets(rhyme)) > 0 \
