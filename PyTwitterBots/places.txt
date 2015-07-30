@@ -25,7 +25,6 @@ beauty salon
 beaver dam
 blacksmith
 blood bank
-blood drive
 boat
 bookstore
 bootcamp
@@ -80,6 +79,7 @@ gypsy camp
 hardware store
 highway rest stop
 hospital
+haunted house
 ice cream shop
 igloo
 insectarium
