@@ -18,7 +18,7 @@ auto junkyard
 bakery
 balcony
 barber shop
-baseball staduim
+baseball stadium
 basement
 beach
 beauty salon
