@@ -6,45 +6,14 @@ import rhymes
 from nltk.corpus import wordnet as wn
 from aOrAn import aOrAn
 import pattern.en
+import names
+import wordLists
 
-#adjective list
-adjs = []
-adjRaw = open("a.txt").read()
-adjLines = adjRaw.split("\n")
-for line in adjLines:
-    a = line.split()
-    adjs += (a[:1])
-#noun list wordnet
-nouns = []
-nounRaw = open("n.txt").read()
-nounLines = nounRaw.split("\n")
-for line in nounLines:
-    n = line.split()
-    nouns += (n[:1])
-#living things
-livingThings = []
-livingThingsRaw = open("livingThings.txt").read()
-livingThingsLines = livingThingsRaw.split("\n")
-for line in livingThingsLines:
-    l = line.split()
-    livingThings += (l[:1])
-#living things
-celebs = [line.rstrip('\n') for line in open('celebs.txt')]
-
-def getNoun():
-    return random.choice(nouns).replace("_", " ")
-
-def getAdj():
-    return random.choice(adjs)
-
-def getLivingThing():
-    return random.choice(livingThings).replace("_", " ")
-
-def getCeleb():
-    return random.choice(celebs)
+names = names.Names()
+words = wordLists.WordLists()
 
 def getClubCeleb():
-    celeb = getCeleb()
+    celeb = words.getCeleb()
     choice = random.random()
     if choice < 0.7:
         pass
@@ -74,11 +43,11 @@ def acronymize(s):
 def newYorksHottestClubIs():
     choice = random.random()
     if choice < .5:
-        clubName = getNoun()
+        clubName = words.getNoun()
     elif choice < 0.9:
-        clubName = getAdj() + " " + getNoun()
+        clubName = words.getAdj() + " " + words.getNoun()
     else:
-        clubName = getAdj() + " " + getAdj() + " " + getNoun()
+        clubName = words.getAdj() + " " + words.getAdj() + " " + words.getNoun()
     if random.random() < 0.5:
         clubName = clubName.upper()
     else:
@@ -93,15 +62,15 @@ def clubThing():
     thing = ""
     choice = random.random()
     if choice < 0.3:
-        thing = maybe(getAdj()) + getAdj() + " " + pattern.en.pluralize(getNoun())
+        thing = maybe(words.getAdj()) + words.getAdj() + " " + pattern.en.pluralize(words.getNoun())
     elif choice < 0.6:
-        thing = pattern.en.pluralize(getNoun())
+        thing = pattern.en.pluralize(words.getNoun())
     elif choice < 0.7:
-        collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit full"]) 
-        thing = collective + " of " + maybe(getAdj()) + pattern.en.pluralize(getLivingThing())
+        collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit of"]) 
+        thing = collective + " of " + maybe(words.getAdj()) + pattern.en.pluralize(words.getLivingThing())
     elif choice < 0.95:
-        prep = random.choice(["with", "by"])
-        thing = pattern.en.referenced(maybe(getAdj()) + getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(getAdj()) + getNoun())
+        prep = random.choice(["with", "by", "holding"])
+        thing = pattern.en.referenced(maybe(words.getAdj()) + words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(words.getAdj()) + words.getOgdenBasicNoun())
     else:
         thing = getClubCeleb()
     return thing
@@ -109,10 +78,29 @@ def clubThing():
 def theyveGotEverything():
     return  "They've got everything: " + clubThing() + ", "  + clubThing() + ", " + clubThing() + ", " + clubThing() + "..."
 
+
+def getFounder():
+    choice = random.random()
+    if choice < 0.9:
+        return names.get(random.choice(["male", "female"]))
+    else:
+        return words.getCeleb()
+
+
+def clubDescription():
+    description =  "Founded in " + str(random.randint(1800, 2015)) + " by " + getFounder() + ", this club "
+    descriptionTransitive = random.choice(["is located in", "resembles", "was built in", "is decorated like", "looks like"])
+    description += descriptionTransitive + " " +  pattern.en.referenced(maybe(words.getPlaceAdj()) + words.getPlace()) + "."
+    return description
+    
+
+
 def main():
     while True:
         print newYorksHottestClubIs()
+        print clubDescription()
         print theyveGotEverything()
+        print
 
 if __name__ == "__main__":
     main()
