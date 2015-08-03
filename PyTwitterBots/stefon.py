@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# what do you call a blank blank, a blah, blah, where the blahs rhyme
+# spits out a stephon joke
 # based on code from http://computationalhumor.tumblr.com
 import sys, random, nltk, urllib, string
 import rhymes
@@ -9,98 +9,101 @@ import pattern.en
 import names
 import wordLists
 
-names = names.Names()
-words = wordLists.WordLists()
+class Stefon:
 
-def getClubCeleb():
-    celeb = words.getCeleb()
-    choice = random.random()
-    if choice < 0.7:
-        pass
-    elif choice < 0.9:
-        celeb = "a " + celeb + " impersonator"
-    elif choice < 1.0:
-        relation = random.choice(["father", "mother", "sister", "brother", "twin", "uncle", "aunt", "grandfather", "grandmother"])
-        celeb = celeb + "'s " + relation
-    return celeb
+    def __init__(self):
+        self.names = names.Names()
+        self.words = wordLists.WordLists()
 
-def maybe(value):
-    if random.random() > 0.5:
-        return value + " "
-    else:
-        return ""
+    def getClubCeleb(self):
+        celeb = self.words.getCeleb()
+        choice = random.random()
+        if choice < 0.7:
+            pass
+        elif choice < 0.9:
+            celeb = "a " + celeb + " impersonator"
+        elif choice < 1.0:
+            relation = random.choice(["father", "mother", "sister", "brother", "twin", "uncle", "aunt", "grandfather", "grandmother"])
+            celeb = celeb + "'s " + relation
+        return celeb
 
-def acronymize(s):
-    a = ""
-    sep = random.choice([".", " "])
-    for c in s:
-        if not c==" ":
-            a = a + c + sep
+    def maybe(self, value):
+        if random.random() > 0.5:
+            return value + " "
         else:
-            a = a + c
-    return a
+            return ""
 
-def newYorksHottestClubIs():
-    choice = random.random()
-    if choice < .5:
-        clubName = words.getNoun()
-    elif choice < 0.9:
-        clubName = words.getAdj() + " " + words.getNoun()
-    else:
-        clubName = words.getAdj() + " " + words.getAdj() + " " + words.getNoun()
-    if random.random() < 0.5:
-        clubName = clubName.upper()
-    else:
-        clubName = clubName.title()
+    def acronymize(self, s):
+        a = ""
+        sep = random.choice([".", " "])
+        for c in s:
+            if not c==" ":
+                a = a + c + sep
+            else:
+                a = a + c
+        return a
 
-    if random.random() < 0.5:
-        clubName = acronymize(clubName)
-    return "New York's hottest club is " + clubName
+    def newYorksHottestClubIs(self):
+        choice = random.random()
+        if choice < .5:
+            clubName = self.words.getNoun()
+        elif choice < 0.9:
+            clubName = self.words.getAdj() + " " + self.words.getNoun()
+        else:
+            clubName = self.words.getAdj() + " " + self.words.getAdj() + " " + self.words.getNoun()
+        if random.random() < 0.5:
+            clubName = clubName.upper()
+        else:
+            clubName = clubName.title()
 
-
-def clubThing():
-    thing = ""
-    choice = random.random()
-    if choice < 0.3:
-        thing = maybe(words.getAdj()) + words.getAdj() + " " + pattern.en.pluralize(words.getNoun())
-    elif choice < 0.6:
-        thing = pattern.en.pluralize(words.getNoun())
-    elif choice < 0.7:
-        collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit of"]) 
-        thing = collective + " of " + maybe(words.getLivingThingAdj()) + pattern.en.pluralize(words.getLivingThing())
-    elif choice < 0.95:
-        prep = random.choice(["with", "holding", "next to", "near", "thinking about", "getting", "wanting", "using", "feeling", "showing", "offering", "serving", "selling", "buying", "carrying"])
-        thing = pattern.en.referenced(maybe(words.getLivingThingAdj()) + words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(words.getAdj()) + words.getOgdenBasicNoun())
-    else:
-        thing = getClubCeleb()
-    return thing
-
-def theyveGotEverything():
-    return  "They've got everything: " + clubThing() + ", "  + clubThing() + ", " + clubThing() + ", " + clubThing() + "..."
+        if random.random() < 0.5:
+            clubName = self.acronymize(clubName)
+            return "New York's hottest club is " + clubName
 
 
-def getFounder():
-    choice = random.random()
-    if choice < 0.9:
-        return names.get(random.choice(["male", "female"]))
-    else:
-        return words.getCeleb()
+    def clubThing(self):
+        thing = ""
+        choice = random.random()
+        if choice < 0.3:
+            thing = self.maybe(self.words.getAdj()) + self.words.getAdj() + " " + pattern.en.pluralize(self.words.getNoun())
+        elif choice < 0.6:
+            thing = pattern.en.pluralize(self.words.getNoun())
+        elif choice < 0.7:
+            collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit of"]) 
+            thing = collective + " of " + self.maybe(self.words.getLivingThingAdj()) + pattern.en.pluralize(self.words.getLivingThing())
+        elif choice < 0.95:
+            prep = random.choice(["with", "holding", "next to", "near", "thinking about", "getting", "wanting", "using", "feeling", "showing", "offering", "serving", "selling", "buying", "carrying"])
+            thing = pattern.en.referenced(self.maybe(self.words.getLivingThingAdj()) + self.words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(self.maybe(self.words.getAdj()) + self.words.getOgdenBasicNoun())
+        else:
+            thing = self.getClubCeleb()
+        return thing
+
+    def theyveGotEverything(self):
+        return  "They've got everything: " + self.clubThing() + ", "  + self.clubThing() + ", " + self.clubThing() + ", " + self.clubThing() + "..."
 
 
-def clubDescription():
-    description =  "Founded in " + str(random.randint(1800, 2015)) + " by " + getFounder() + ", this club "
-    descriptionTransitive = random.choice(["is located in", "resembles", "was built in", "is decorated like", "looks like"])
-    description += descriptionTransitive + " " +  pattern.en.referenced(maybe(words.getPlaceAdj()) + words.getPlace()) + "."
-    return description
-    
+    def getFounder(self):
+        choice = random.random()
+        if choice < 0.9:
+            return self.names.get(random.choice(["male", "female"]))
+        else:
+            return self.words.getCeleb()
 
 
-def main():
-    while True:
-        print newYorksHottestClubIs()
-        print clubDescription()
-        print theyveGotEverything()
-        print
+    def clubDescription(self):
+        description =  "Founded in " + str(random.randint(1800, 2015)) + " by " + self.getFounder() + ", this club "
+        descriptionTransitive = random.choice(["is located in", "resembles", "was built in", "is decorated like", "looks like"])
+        description += descriptionTransitive + " " +  pattern.en.referenced(self.maybe(self.words.getPlaceAdj()) + self.words.getPlace()) + "."
+        return description
+
+
+    def main(self):
+        while True:
+            print self.newYorksHottestClubIs()
+            print self.clubDescription()
+            print self.theyveGotEverything()
+            print
 
 if __name__ == "__main__":
-    main()
+    stefon = Stefon()
+    stefon.main()
