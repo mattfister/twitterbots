@@ -16,8 +16,6 @@ apple
 applicant
 army
 artist
-assembly
-association
 athlete
 auction
 audience
