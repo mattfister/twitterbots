@@ -67,10 +67,10 @@ def clubThing():
         thing = pattern.en.pluralize(words.getNoun())
     elif choice < 0.7:
         collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit of"]) 
-        thing = collective + " of " + maybe(words.getAdj()) + pattern.en.pluralize(words.getLivingThing())
+        thing = collective + " of " + maybe(words.getLivingThingAdj()) + pattern.en.pluralize(words.getLivingThing())
     elif choice < 0.95:
         prep = random.choice(["with", "holding", "next to", "near", "thinking about", "getting", "wanting", "using", "feeling", "showing", "offering", "serving", "selling", "buying", "carrying"])
-        thing = pattern.en.referenced(maybe(words.getAdj()) + words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(words.getAdj()) + words.getOgdenBasicNoun())
+        thing = pattern.en.referenced(maybe(words.getLivingThingAdj()) + words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(maybe(words.getAdj()) + words.getOgdenBasicNoun())
     else:
         thing = getClubCeleb()
     return thing
