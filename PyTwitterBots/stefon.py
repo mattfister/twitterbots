@@ -68,10 +68,10 @@ class Stefon:
             thing = pattern.en.pluralize(self.words.getNoun())
         elif choice < 0.7:
             collective = random.choice(["groups", "bunches", "packs", "a swimming pool full", "a pit of"]) 
-            thing = collective + " of " + self.maybe(self.words.getAdj()) + pattern.en.pluralize(self.words.getLivingThing())
+            thing = collective + " of " + self.maybe(self.words.getLivingThingAdj()) + pattern.en.pluralize(self.words.getLivingThing())
         elif choice < 0.95:
             prep = random.choice(["with", "holding", "next to", "near", "thinking about", "getting", "wanting", "using", "feeling", "showing", "offering", "serving", "selling", "buying", "carrying"])
-            thing = pattern.en.referenced(self.maybe(self.words.getAdj()) + self.words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(self.maybe(self.words.getAdj()) + self.words.getOgdenBasicNoun())
+            thing = pattern.en.referenced(self.maybe(self.words.getLivingThingAdj()) + self.words.getLivingThing()) + " " + prep + " " +  pattern.en.referenced(self.maybe(self.words.getAdj()) + self.words.getOgdenBasicNoun())
         else:
             thing = self.getClubCeleb()
         return thing
