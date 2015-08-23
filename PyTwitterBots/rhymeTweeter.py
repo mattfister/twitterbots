@@ -1,11 +1,16 @@
 #!/usr/bin/python
 # what do you call a blank blank, a blah, blah, where the blahs rhyme
 # based on code from http://computationalhumor.tumblr.com
-import tweepy, time, sys
-import sys, random, nltk, urllib, string
-import rhymes
+import time
+import random
+import string
+
+import tweepy
+import nltk
 from nltk.corpus import wordnet as wn
-from aOrAn import aOrAn
+
+import rhymes
+from wordtools.aOrAn import aOrAn
 
 keys = open('keys.txt', 'r')
 

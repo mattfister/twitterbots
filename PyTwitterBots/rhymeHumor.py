@@ -1,10 +1,15 @@
 #!/usr/bin/python
 # what do you call a blank blank, a blah, blah, where the blahs rhyme
 # based on code from http://computationalhumor.tumblr.com
-import sys, random, nltk, urllib, string
-import rhymes
+import random
+import string
+
+import nltk
 from nltk.corpus import wordnet as wn
-from aOrAn import aOrAn
+
+import rhymes
+from wordtools.aOrAn import aOrAn
+
 
 def main():
 

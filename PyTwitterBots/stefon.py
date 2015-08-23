@@ -1,13 +1,11 @@
 #!/usr/bin/python
 # spits out a stephon joke
 # based on code from http://computationalhumor.tumblr.com
-import sys, random, nltk, urllib, string
-import rhymes
-from nltk.corpus import wordnet as wn
-from aOrAn import aOrAn
+import random
+
 import pattern.en
-import names
-import wordLists
+from wordtools import wordLists, names
+
 
 class Stefon:
 

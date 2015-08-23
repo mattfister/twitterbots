@@ -1,11 +1,14 @@
 import random
+import os.path
+
 
 class Names:
+
     def __init__(self):
         
-        self.maleFirsts = [line.rstrip('\n').title() for line in open('maleFirstNames.txt')]
-        self.femaleFirsts = [line.rstrip('\n').title() for line in open('femaleFirstNames.txt')]
-        self.lasts = [line.rstrip('\n').title() for line in open('lastNames.txt')]
+        self.maleFirsts = [line.rstrip('\n').title() for line in open(os.path.join('words', 'maleFirstNames.txt'))]
+        self.femaleFirsts = [line.rstrip('\n').title() for line in open(os.path.join('words', 'femaleFirstNames.txt'))]
+        self.lasts = [line.rstrip('\n').title() for line in open(os.path.join('words', 'lastNames.txt'))]
     
     def getFirst(self, gender):
         if gender == 'male':
