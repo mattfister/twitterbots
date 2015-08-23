@@ -1,42 +1,48 @@
 import random
 import os.path
 
+
 class WordLists:
+    adjs = [line.rstrip('\n') for line in open(os.path.join('words', 'a.txt'))]
+    nouns = [line.rstrip('\n') for line in open(os.path.join('words', 'n.txt'))]
+    verbs = [line.rstrip('\n') for line in open(os.path.join('words', 'v.txt'))]
+    living_things = [line.rstrip('\n') for line in open(os.path.join('words', 'livingThings.txt'))]
+    celebs = [line.rstrip('\n') for line in open(os.path.join('words', 'celebs.txt'))]
+    places = [line.rstrip('\n') for line in open(os.path.join('words', 'places.txt'))]
+    place_adjs = [line.rstrip('\n') for line in open(os.path.join('words', 'placeAdjs.txt'))]
+    ogdenBasicNouns = [line.rstrip('\n') for line in open(os.path.join('words', 'ogdenBasicNouns.txt'))]
+
     def __init__(self):
-        self.adjs = [line.rstrip('\n') for line in open(os.path.join('words', 'a.txt'))]
-        self.nouns = [line.rstrip('\n') for line in open(os.path.join('words', 'n.txt'))]
-        self.verbs = [line.rstrip('\n') for line in open(os.path.join('words', 'v.txt'))]
-        self.livingThings = [line.rstrip('\n') for line in open(os.path.join('words', 'livingThings.txt'))]
-        self.celebs = [line.rstrip('\n') for line in open(os.path.join('words', 'celebs.txt'))]
-        self.places = [line.rstrip('\n') for line in open(os.path.join('words', 'places.txt'))]
-        self.placeAdjs = [line.rstrip('\n') for line in open(os.path.join('words', 'placeAdjs.txt'))]
-        self.ogdenBasicNouns = [line.rstrip('\n') for line in open(os.path.join('words', 'ogdenBasicNouns.txt'))]
-        
-    def getNoun(self):
-        return random.choice(self.nouns).replace("_", " ")
-    
-    def getAdj(self):
-        return random.choice(self.adjs)
-    
-    def getCeleb(self):
-        return random.choice(self.celebs)
+        pass
 
-    def getLivingThing(self):
-        return random.choice(self.livingThings)
+    def get_noun(self):
+        return random.choice(WordLists.nouns).replace("_", " ")
 
-    def getPlace(self):
-        return random.choice(self.places)
+    def get_adj(self):
+        return random.choice(WordLists.adjs)
 
-    def getPlaceAdj(self):
-        return random.choice(self.placeAdjs)
+    def get_celeb(self):
+        return random.choice(WordLists.celebs)
 
-    def getOgdenBasicNoun(self):
-        return random.choice(self.ogdenBasicNouns)
+    def get_living_thing(self):
+        return random.choice(WordLists.living_things)
+
+    def get_place(self):
+        return random.choice(WordLists.places)
+
+    def get_place_adj(self):
+        return random.choice(WordLists.place_adjs)
+
+    def get_ogden_basic_noun(self):
+        return random.choice(WordLists.ogdenBasicNouns)
+
+    def get_living_thing_adj(self):
+        return random.choice(WordLists.place_adjs)
 
 if __name__ == "__main__":
     w = WordLists()
-    print w.getNoun()
-    print w.getAdj()
-    print w.getCeleb()
-    print w.getLivingThing()
-    print w.getPlace()
+    print w.get_noun()
+    print w.get_adj()
+    print w.get_celeb()
+    print w.get_living_thing()
+    print w.get_place()

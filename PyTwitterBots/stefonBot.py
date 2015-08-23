@@ -7,7 +7,7 @@ class StefonBot:
     def __init__(self):
         keys = open('keys.txt', 'r')
 
-        #enter the corresponding information from your Twitter application:
+        # enter the corresponding information from your Twitter application:
         CONSUMER_KEY = keys.readline().rstrip()
         CONSUMER_SECRET = keys.readline().rstrip()
         ACCESS_KEY = keys.readline().rstrip()
@@ -44,12 +44,13 @@ class StefonBot:
         print self.latestId
         if newId > self.latestId:
             self.latestId = newId
-            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.newYorksHottestClubIs())
-            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.clubDescription())
-            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.theyveGotEverything())
+            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.new_yorks_hottest_club_is())
+            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.club_description())
+            self.api.update_status(status=".@" + newUserScreenName + " " + self.stefon.theyve_got_everything())
             time.sleep(300)
-        
-if __name__=='__main__':
+
+
+if __name__ == '__main__':
     stefonBot = StefonBot()
     while True:
         stefonBot.checkAndReply()
