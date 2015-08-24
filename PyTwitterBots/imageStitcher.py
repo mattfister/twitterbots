@@ -7,7 +7,6 @@ import requests
 import shutil
 import random
 from tweepy.streaming import StreamListener
-from tweepy import OAuthHandler
 from tweepy import Stream
 from PIL import Image
 from PIL import ImageChops
