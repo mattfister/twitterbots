@@ -1,5 +1,23 @@
+#! /usr/bin/env python
+# stefon_bot.py
+
+""" This is a twitter bot that replies to @mentions with a series of tweets describing the hottest club in New York.
+
+REQUIREMENTS:
+keys.txt
+An adjacent file named keys.txt that requires the following twitter API keys each on there own line in this
+format:
+
+consumer_key
+consumer_secret
+access_key
+access_secret
+
+"""
+
 import stefon
 import tweepy
+from tweepy import TweepError
 import time
 
 
@@ -44,9 +62,18 @@ class StefonBot:
         print self.latestId
         if new_id > self.latestId:
             self.latestId = new_id
-            self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.new_yorks_hottest_club_is())
-            self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.club_description())
-            self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.theyve_got_everything())
+            try:
+                self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.new_yorks_hottest_club_is())
+            except TweepError:
+                pass
+            try:
+                self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.club_description())
+            except TweepError:
+                pass
+            try:
+                self.api.update_status(status=".@" + new_user_screen_name + " " + self.stefon.theyve_got_everything())
+            except TweepError:
+                pass
             time.sleep(300)
 
 
