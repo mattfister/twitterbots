@@ -1,6 +1,7 @@
 #!/usr/bin/python
-# what do you call a blank blank, a blah, blah, where the blahs rhyme
-# based on code from http://computationalhumor.tumblr.com
+# Tweets once an hour - What do you call a blank blank? A blah, blah! where the blahs rhyme.
+# 
+# Based on code from http://computationalhumor.tumblr.com
 import time
 import random
 import string
