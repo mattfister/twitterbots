@@ -22,11 +22,13 @@ def random_rhyme():
                     noun2 = adj2_rhyme
                     try:
                         noun2_synset = wn.synset(noun2 + ".n.01").lemma_names()
+                        random.shuffle(noun2_synset)
                         for noun_syn in noun2_synset:
                             noun1 = string.lower(noun_syn)
                             adj2_synset = wn.synset(adj2 + ".a.02").lemma_names()
+                            random.shuffle(adj2_synset)
                             for adj2_syn in adj2_synset:
-                                adj1 = string.lower(random.choice(adj2_synset))
+                                adj1 = adj2_syn
                                 if noun2 != noun1 and adj2 != adj1:
                                     x = "What do you call " + aOrAn(adj1) + " " + adj1.replace('_',' ') + " " + noun1.replace('_', ' ') + "?\n" + aOrAn(adj2).title() + " " + adj2.replace('_',' ') + " " + noun2.replace('_', ' ') + "!\n"
                                     return x
