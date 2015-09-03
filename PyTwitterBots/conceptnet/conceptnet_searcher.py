@@ -67,4 +67,4 @@ def get_concept_relations(concept):
     
 
 if __name__ == '__main__':
-    get_concept_relations(sys.argv[1])
+    print get_concept_relations(sys.argv[1])

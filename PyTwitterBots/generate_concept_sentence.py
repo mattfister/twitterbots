@@ -8,7 +8,9 @@ tool = language_check.LanguageTool('en-US')
 
 all_relations = ('RelatedTo', 'IsA', 'PartOf', 'MemberOf', 'HasA', 'UsedFor', 'CapableOf', 'AtLocation', 'Causes', 'HasSubevent', 'HasFirstSubevent', 'HasLastSubevent', 'HasPrerequisite', 'HasProperty', 'MotivatedByGoal', 'ObstructedBy', 'Desires', 'CreatedBy', 'Synonym', 'Antonym', 'DerivedFrom', 'TranslationOf', 'DefinedAs')
 
-relations = ('RelatedTo', 'IsA', 'PartOf', 'HasA', 'UsedFor')
+relations = ('RelatedTo', 'IsA', 'PartOf', 'HasA', 'UsedFor', 'CapableOf')
+#relations = ('IsA', 'PartOf', 'HasA', 'UsedFor')
+
 
 def correct_sentence(sentence):
     matches = tool.check(sentence)
@@ -51,6 +53,14 @@ def used_for_sentence(concept, subject, person=None):
         sentence = person + ' considered using the ' + concept + " to " + subject + "."
     return sentence
 
+def capable_of_sentence(concept, subject, person=None):
+    if person == None:
+        sentence = "The " + concept + " could " + subject + "."
+    else:
+        sentence = person + ' could tell the ' + concept + ' could ' + subject + "."
+    return sentence
+
+
 def generate_concept_sentence(person, concept, relation):
     pass
 
@@ -77,6 +87,8 @@ def generate_concept_sentence(person, concept):
         sentence = has_a_sentence(concept_part, subject_part, person)
     elif relation == 'UsedFor':
         sentence = used_for_sentence(concept_part, subject_part, person)
+    elif relation == 'CapableOf':
+        sentence = capable_of_sentence(concept_part, subject_part, person)
     return sentence
 
 

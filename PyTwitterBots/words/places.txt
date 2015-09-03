@@ -2,6 +2,32 @@ abbey
 adoption clinic
 airport
 alley
+farm
+outhouse
+bathroom
+bedroom
+graveyard
+cemetary
+college
+university
+swamp
+bog
+hill
+mountain
+resort
+beach
+forest
+skyscraper
+concert
+treehouse
+arena
+temple
+factory
+jail
+prison
+library
+dancehall
+discotheque
 alligator farm
 ancient pyramid
 animal research facility
@@ -55,6 +81,7 @@ corporate board room
 courthouse
 dance studio
 day spa
+dump
 distillery
 dragon's lair
 emergency room
@@ -79,6 +106,7 @@ gypsy camp
 hardware store
 highway rest stop
 hospital
+house
 haunted house
 ice cream shop
 igloo
@@ -90,6 +118,7 @@ karaoke bar
 karate studio
 landfill
 laundromat
+laboratory
 library
 lighthouse
 logging camp
@@ -103,6 +132,7 @@ nightclub
 nuclear reactor
 nursing home
 observatory
+office
 office cubicle
 opera house
 optometrist
@@ -125,6 +155,7 @@ roadside motel
 salt mine
 sanitarium
 school
+store
 second hand store
 secret hideaway
 sewer
