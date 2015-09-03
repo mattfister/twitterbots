@@ -19,7 +19,7 @@ def find_faces(img, scale_factor, min_neighbors):
         gray,
         scaleFactor=scale_factor,
         minNeighbors=min_neighbors,
-        minSize=(200, 200),
+        minSize=(100, 100),
         flags = cv2.cv.CV_HAAR_SCALE_IMAGE
     )
 
