@@ -1,6 +1,7 @@
 import csv
 import pickle
 import json
+import sys
 
 files = ['part_00.csv', 'part_01.csv', 'part_02.csv', 'part_03.csv', 'part_04.csv', 'part_05.csv', 'part_06.csv',
          'part_07.csv']
@@ -62,8 +63,8 @@ def chop_csvs():
 def get_concept_relations(concept):
     with open('conceptnet/conceptnet_reduced_en_' + str(string_hash(concept)) + '.json', 'r') as f:
         m = json.load(f)
-        print m[concept]
+        return m[concept]
     
 
 if __name__ == '__main__':
-    get_concept_relations('desk')
+    get_concept_relations(sys.argv[1])
