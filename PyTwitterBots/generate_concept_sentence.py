@@ -2,9 +2,7 @@ import sys
 from conceptnet import conceptnet_searcher
 import random
 from wordtools import aOrAn
-import language_check
 
-tool = language_check.LanguageTool('en-US')
 
 all_relations = ('RelatedTo', 'IsA', 'PartOf', 'MemberOf', 'HasA', 'UsedFor', 'CapableOf', 'AtLocation', 'Causes', 'HasSubevent', 'HasFirstSubevent', 'HasLastSubevent', 'HasPrerequisite', 'HasProperty', 'MotivatedByGoal', 'ObstructedBy', 'Desires', 'CreatedBy', 'Synonym', 'Antonym', 'DerivedFrom', 'TranslationOf', 'DefinedAs')
 
@@ -12,16 +10,12 @@ relations = ('RelatedTo', 'IsA', 'PartOf', 'HasA', 'UsedFor', 'CapableOf')
 #relations = ('IsA', 'PartOf', 'HasA', 'UsedFor')
 
 
-def correct_sentence(sentence):
-    matches = tool.check(sentence)
-    return language_check.correct(sentence, matches)
-
-
 def related_to_sentence(concept, subject, person=None):
+    relation = random.choice((' was ', ' was related to ', ' was kind of like ', ' was similar to '))
     if person == None:
-        sentence = "The " + concept + " was related to " + aOrAn.aOrAn(subject) + " " + subject + "."
+        sentence = "The " + concept + relation + aOrAn.aOrAn(subject) + " " + subject + "."
     else:
-        sentence = person + ' thought about how a ' + concept + ' was related to ' + aOrAn.aOrAn(subject) + " " + subject + '.'
+        sentence = person + ' thought about how a ' + concept + relation + aOrAn.aOrAn(subject) + " " + subject + '.'
     return sentence
 
 def is_a_sentence(concept, subject, person=None):
@@ -65,7 +59,7 @@ def generate_concept_sentence(person, concept, relation):
     pass
 
 def prep_part(part):
-    return part.replace('_', ' ')
+    return part.replace('_', ' ').replace('build', 'building')
 
 def generate_concept_sentence(person, concept):
     concept_relations = conceptnet_searcher.get_concept_relations(concept)
