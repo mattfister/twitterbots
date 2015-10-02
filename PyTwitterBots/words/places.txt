@@ -1,3 +1,32 @@
+barn
+farmhouse
+shed
+granary
+greenhouse
+hayloft
+pigpen
+cellar
+silo
+stable
+forum
+gas station
+villa
+bungalow
+duplex
+condomnium
+archive
+college
+school
+theater
+cinema
+opera_house
+ampitheater
+capitol
+city_hall
+embassy
+fire_station
+meeting_house
+
 abbey
 adoption clinic
 airport
@@ -28,8 +57,8 @@ prison
 library
 dancehall
 discotheque
-alligator farm
-ancient pyramid
+farm
+pyramid
 animal research facility
 animal sanctuary
 animal shelter
