@@ -2,14 +2,17 @@ import generate_concept_sentence
 from conceptnet import conceptnet_searcher
 import random
 from person import Person
-
+from wordtools import wordLists
 
 class Paragraph:
+
 
     def __init__(self, chars, setting):
         self.chars = chars
         self.setting = setting
         self.topic = ""
+        self.words = wordLists.WordLists()
+
     
     def setting_sentence(self, chars, setting):
         sentence = ''
@@ -25,6 +28,12 @@ class Paragraph:
 
     def generate_sentences(self):
         self.props = [i[1] for i in conceptnet_searcher.get_concept_relations(self.setting) if i[0] == 'HasA']
+        
+        for i in range(0, random.randint(0,2)):
+            self.props.append(self.words.get_ogden_basic_noun())
+
+        print self.props
+
         print self.setting_sentence(self.chars, self.setting)
 
         for i in range(10):
