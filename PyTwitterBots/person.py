@@ -31,5 +31,8 @@ class Person:
             self.last_name = ""
 
         self.qualities = (generate_quality(), generate_quality(), generate_quality())
+        self.history = []
 
-    
+    def add_history(happening):
+        self.history.append(happening)
+
