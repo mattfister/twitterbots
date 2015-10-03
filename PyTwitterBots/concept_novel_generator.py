@@ -19,10 +19,10 @@ def generate_character():
 
 def generate_setting():
     while True:
-        setting = words.get_place()
-        try: 
-            conceptnet_searcher.get_concept_relations(setting)
+        setting = words.get_fantasy_place()
+        try:
             print setting
+            conceptnet_searcher.get_concept_relations(setting)
             return setting
         except Exception:
             print sys.exc_info()[0]

@@ -12,6 +12,8 @@ class WordLists:
     place_adjs = [line.rstrip('\n') for line in open(os.path.join('words', 'placeAdjs.txt'))]
     ogdenBasicNouns = [line.rstrip('\n') for line in open(os.path.join('words', 'ogdenBasicNouns.txt'))]
     living_thing_adjs = [line.rstrip('\n') for line in open(os.path.join('words', 'livingThingAdjs.txt'))]
+    fantasy_places = [line.rstrip('\n') for line in open(os.path.join('words', 'fantasyPlaces.txt'))]
+    fantasy_props = [line.rstrip('\n') for line in open(os.path.join('words', 'fantasyProps.txt'))]
 
     def __init__(self):
         pass
@@ -34,11 +36,17 @@ class WordLists:
     def get_place_adj(self):
         return random.choice(WordLists.place_adjs)
 
+    def get_fantasy_place(self):
+        return random.choice(WordLists.fantasy_places)
+
     def get_ogden_basic_noun(self):
         return random.choice(WordLists.ogdenBasicNouns)
 
     def get_living_thing_adj(self):
         return random.choice(WordLists.living_thing_adjs)
+
+    def get_fantasy_prop(self):
+        return random.choice(WordLists.fantasy_props)
 
 if __name__ == "__main__":
     w = WordLists()

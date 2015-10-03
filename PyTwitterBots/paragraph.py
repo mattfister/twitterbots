@@ -26,7 +26,7 @@ class Paragraph:
             elif i == len(chars) - 2:
                 sentence += ', and ' 
             else:
-                sentence += ' were in a ' + setting + '.'
+                sentence += ' traveled to a ' + setting + '.'
         return sentence
 
     def discover_prop(self, char, prop, setting):
@@ -41,7 +41,7 @@ class Paragraph:
         self.props = [i[1].replace('_', ' ') for i in conceptnet_searcher.get_concept_relations(self.setting) if i[0] == 'HasA']
 
         for i in range(2):
-            self.props.append(self.words.get_ogden_basic_noun())
+            self.props.append(self.words.get_fantasy_prop())
 
         random.shuffle(self.props)
         self.props = self.props[:2]

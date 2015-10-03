@@ -61,6 +61,7 @@ def chop_csvs():
 
 
 def get_concept_relations(concept):
+    concept = concept.replace(' ', '_').lower()
     with open('conceptnet/conceptnet_reduced_en_' + str(string_hash(concept)) + '.json', 'r') as f:
         m = json.load(f)
         return m[concept]
