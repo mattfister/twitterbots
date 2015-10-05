@@ -9,12 +9,10 @@ silo
 stable
 forum
 villa
-college
 school
 ampitheater
 capitol
 abbey
-airport
 farm
 outhouse
 graveyard

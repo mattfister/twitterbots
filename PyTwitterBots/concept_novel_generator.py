@@ -9,6 +9,7 @@ import sys
 
 names = names.Names()
 words = wordLists.WordLists()
+scene_settings = []
 
 def generate_character():
     choice = random.random()
@@ -30,9 +31,12 @@ def generate_setting():
 
 def generate_novel():
     characters = [Person(), Person(), Person()]
-    setting = generate_setting()
-    paragraph = Paragraph(characters, setting)
-    paragraph.generate_sentences()
+    for i in range(5):
+        scene_settings.append(generate_setting())
+    for setting in scene_settings:
+        paragraph = Paragraph(characters, setting)
+        paragraph.generate_sentences()
+        print paragraph
 
 if __name__ == '__main__':
     generate_novel()

@@ -15,6 +15,7 @@ class Paragraph:
         self.words = wordLists.WordLists()
         self.props = []
         self.known_props = []
+        self.sentences = []
 
     
     def setting_sentence(self, chars, setting):
@@ -50,16 +51,22 @@ class Paragraph:
 
         self.known_props = []
 
-        print self.setting_sentence(self.chars, self.setting)
+        self.sentences.append(self.setting_sentence(self.chars, self.setting))
 
         for i in range(10):
             if random.random() < 0.5:
-                print generate_concept_sentence.generate_concept_sentence(random.choice((random.choice(self.chars).first_name, None)), self.setting)
+                self.sentences.append(generate_concept_sentence.generate_concept_sentence(random.choice((random.choice(self.chars).first_name, None)), self.setting))
             else:
                 if len(self.props) > 0:
-                    print self.discover_prop(random.choice((random.choice(self.chars).first_name, None)), random.choice(self.props), self.setting)
+                    self.sentences.append(self.discover_prop(random.choice((random.choice(self.chars).first_name, None)), random.choice(self.props), self.setting))
                 elif len(self.known_props) > 0:
                     try:
-                        print generate_concept_sentence.generate_concept_sentence(random.choice((random.choice(self.chars).first_name, None)), random.choice(self.known_props))
+                        self.sentences.append(generate_concept_sentence.generate_concept_sentence(random.choice((random.choice(self.chars).first_name, None)), random.choice(self.known_props)))
                     except Exception:
                         continue
+
+    def __str__(self):
+        val = '\t'
+        for sentence in self.sentences:
+            val = val + sentence + " "
+        return val
